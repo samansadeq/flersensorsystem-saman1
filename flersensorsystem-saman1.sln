@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "flersensorsystem-saman1", "flersensorsystem-saman1\flersensorsystem-saman1.vcxproj", "{32550DE8-9105-4F93-8BF4-0CB961515F51}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32550DE8-9105-4F93-8BF4-0CB961515F51}.Debug|x64.ActiveCfg = Debug|x64
+		{32550DE8-9105-4F93-8BF4-0CB961515F51}.Debug|x64.Build.0 = Debug|x64
+		{32550DE8-9105-4F93-8BF4-0CB961515F51}.Debug|x86.ActiveCfg = Debug|Win32
+		{32550DE8-9105-4F93-8BF4-0CB961515F51}.Debug|x86.Build.0 = Debug|Win32
+		{32550DE8-9105-4F93-8BF4-0CB961515F51}.Release|x64.ActiveCfg = Release|x64
+		{32550DE8-9105-4F93-8BF4-0CB961515F51}.Release|x64.Build.0 = Release|x64
+		{32550DE8-9105-4F93-8BF4-0CB961515F51}.Release|x86.ActiveCfg = Release|Win32
+		{32550DE8-9105-4F93-8BF4-0CB961515F51}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BDA8B898-770C-455F-AFE8-45D728F6994B}
+	EndGlobalSection
+EndGlobal
