@@ -1,6 +1,6 @@
 # flersensorsystem-saman1
-GitHub repo link: 
-
+GitHub repo link: https://github.com/samansadeq/flersensorsystem-saman1
+--------------------------------------------
 
 # Flersensorsystem – Sensor­simulering i C++
 
