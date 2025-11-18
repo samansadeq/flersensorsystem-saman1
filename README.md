@@ -3,7 +3,7 @@ GitHub repo link: https://github.com/samansadeq/flersensorsystem-saman1
 --------------------------------------------
 
 Flersensorsystem – Sensor­simulering i C++
-
+ 
 Projektöversikt
 Flersensorsystem-Saman är ett C++-program som körs i konsolen och simulerar mätvärden från flera virtuella sensorer.  
 Programmet lagrar dessa mätningar, analyserar dem och erbjuder användaren olika val via ett menygränssnitt.
