@@ -2,21 +2,97 @@
 GitHub repo link: https://github.com/samansadeq/flersensorsystem-saman1
 --------------------------------------------
 
-Flersensorsystem – Sensor­simulering i C++
- 
-Projektöversikt
-Flersensorsystem-Saman är ett C++-program som körs i konsolen och simulerar mätvärden från flera virtuella sensorer.  
-Programmet lagrar dessa mätningar, analyserar dem och erbjuder användaren olika val via ett menygränssnitt.
+Flersensorsystem – Arv, Polymorfism och Tröskellarm
+Introduktion
 
-Syftet är att visa hur man kan använda objektorienterad programmering (OOP), filhantering och statistiska beräkningar i ett strukturerat C++-projekt.  
-Koden är uppdelad i flera filer med tydliga klasser och ansvarsfördelning.
+Detta projekt är en utökning av Inlämningsuppgift 1 och 2. Systemet simulerar flera sensorer, lagrar mätdata, utför statistik och hanterar filinläsning. I INL2 har projektet vidareutvecklats för att använda arv, polymorfism, abstrakta klasser samt ett tröskelbaserat larmsystem.
 
- Funktioner
- Hanterar flera sensorer (t.ex. temperatur och luftfuktighet)  
- Simulerar realistiska mätvärden med slumpmässiga tal  
- Lagrar alla mätvärden i en lista (vector)  
- Visar alla mätvärden i konsolen  
- Gör analys per sensor (antal, medelvärde, min, max, standardavvikelse)  
- Sparar mätdata till fil (CSV-format)  
- Läser in mätdata från fil  
- Användarvänligt menygränssnitt i terminalen  
+Översikt av funktionalitet
+
+Abstrakt basklass för Sensor med rena virtuella funktioner
+
+Tre konkreta sensorer: TemperatureSensor, HumiditySensor, PressureSensor
+
+Polymorf lagring av sensorer via std::vector<std::unique_ptr<Sensor>>
+
+Simulering av mätvärden med slumpgenerator
+
+Lagring av mätdata i MeasurementStorage
+
+Statistik per sensor (medelvärde, min, max, antal, standardavvikelse)
+
+Sparning och läsning av mätdata i CSV-format
+
+Konfigurerbara tröskelregler (över/under ett värde)
+
+Larm som registreras när en tröskel bryts
+
+Meny för att hantera hela systemet
+
+Teknisk design
+
+Systemarkitekturen består av:
+
+Sensor (abstrakt klass): read(), name(), unit()
+
+TemperatureSensor, HumiditySensor, PressureSensor: konkreta implementationer
+
+Measurement: struktur för mätvärden
+
+MeasurementStorage: lagring, utskrift och statistik
+
+Threshold och Alert: enkla datastrukturer för larmhantering
+
+SystemController: kopplar samman sensorer, lagring, larm och filhantering
+
+main.cpp: meny och programflöde
+
+UML-klassdiagram (textformat)
+                 <<abstract>>
+                    Sensor
+   ------------------------------------
+    + read() : double
+    + name() : string
+    + unit() : string
+   ------------------------------------
+        ^           ^            ^
+        |           |            |
+Temperature   Humidity     Pressure
+Sensor         Sensor        Sensor
+-----------------------------------------
+- id_ : string
+- minV_ : double
+- maxV_ : double
+-----------------------------------------
++ read() : double
++ name() : string
++ unit() : string
+
+SystemController
+-----------------------------------------
+- sensors_ : vector<unique_ptr<Sensor>>
+- thresholds_ : vector<Threshold>
+- alerts_ : vector<Alert>
+- storage_ : MeasurementStorage
+-----------------------------------------
++ addSensor()
++ sampleAllOnce()
++ configureThreshold()
++ showAlerts()
++ showStatsFor()
++ saveToFile()
++ loadFromFile()
+
+Projektstruktur (förenklad)
+sensor.h                     (abstrakt basklass)
+temperature_sensor.h/.cpp
+humidity_sensor.h/.cpp
+pressure_sensor.h/.cpp
+system_controller.h/.cpp     (styr logiken)
+measurement.h
+storage.h/.cpp               (lagring och statistik)
+threshold.h
+alert.h
+utils.h/.cpp                 (timestamp)
+main.cpp
+README.md
