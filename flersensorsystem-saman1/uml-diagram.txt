@@ -1,0 +1,39 @@
+                    +----------------------+
+                    |      <<abstract>>    |
+                    |        Sensor        |
+                    +----------------------+
+                    | +~Sensor()           |
+                    | +read() : double =0  |
+                    | +name() : string =0  |
+                    | +unit() : string =0  |
+                    +----------------------+
+                        ^        ^        ^
+                        |        |        |
+   +-------------------------+  +-----------------------+  +-----------------------+
+   |   TemperatureSensor     |  |    HumiditySensor    |  |    PressureSensor     |
+   +-------------------------+  +-----------------------+  +-----------------------+
+   | -id_ : string           |  | -id_ : string        |  | -id_ : string         |
+   | -minV_ : double         |  | -minV_ : double      |  | -minV_ : double       |
+   | -maxV_ : double         |  | -maxV_ : double      |  | -maxV_ : double       |
+   +-------------------------+  +-----------------------+  +-----------------------+
+   | +read() : double        |  | +read() : double     |  | +read() : double      |
+   | +name() : string        |  | +name() : string     |  | +name() : string      |
+   | +unit() : string        |  | +unit() : string     |  | +unit() : string      |
+   +-------------------------+  +-----------------------+  +-----------------------+
+
+                  +--------------------------------------------+
+                  |             SystemController                |
+                  +--------------------------------------------+
+                  | - sensors_ : vector<unique_ptr<Sensor>>    |
+                  | - thresholds_ : vector<Threshold>          |
+                  | - alerts_ : vector<Alert>                  |
+                  | - storage_ : MeasurementStorage            |
+                  +--------------------------------------------+
+                  | +addSensor()                               |
+                  | +sampleAllOnce()                           |
+                  | +configureThreshold()                      |
+                  | +showAlerts()                              |
+                  | +showStatsFor()                            |
+                  | +saveToFile()                              |
+                  | +loadFromFile()                            |
+                  +--------------------------------------------+

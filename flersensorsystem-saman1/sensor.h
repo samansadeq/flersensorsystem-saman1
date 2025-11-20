@@ -2,16 +2,10 @@
 #include <string>
 
 class Sensor {
-private:
-    std::string name;
-    std::string unit;
-    double minValue;
-    double maxValue;
-
 public:
-    Sensor(const std::string& n, const std::string& u, double minV, double maxV);
-    double read() const;
-    std::string getName() const;
-    std::string getUnit() const;
+    virtual ~Sensor() = default;
+    virtual double read() = 0;                   // pure virtual -> must override
+    virtual std::string name() const = 0;        // pure virtual
+    virtual std::string unit() const = 0;        // pure virtual
 };
 
