@@ -18,6 +18,7 @@ public:
     void showStatsFor(const std::string& name) const;
     void saveToFile(const std::string& path) const;
     void loadFromFile(const std::string& path);
+    void printAllMeasurements() const;
 
 private:
     std::vector<std::unique_ptr<Sensor>> sensors_;

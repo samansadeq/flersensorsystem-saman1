@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "system_controller.h"
 #include "temperature_sensor.h"
 #include "humidity_sensor.h"
@@ -7,12 +8,12 @@
 int main() {
     SystemController controller;
 
-    controller.addSensor(std::make_unique<TemperatureSensor>("Temperature", 18, 30));
-    controller.addSensor(std::make_unique<HumiditySensor>("Humidity", 30, 70));
-    controller.addSensor(std::make_unique<PressureSensor>("Pressure", 950, 1050));
+    // Lägg till sensorer polymorft
+    controller.addSensor(std::make_unique<TemperatureSensor>("Temperature", 18.0, 30.0));
+    controller.addSensor(std::make_unique<HumiditySensor>("Humidity", 30.0, 70.0));
+    controller.addSensor(std::make_unique<PressureSensor>("Pressure", 950.0, 1050.0));
 
-    int choice;
-    do {
+    while (true) {
         std::cout << "\n=== SENSOR SYSTEM MENU ===\n";
         std::cout << "1. Sample all sensors\n";
         std::cout << "2. Show statistics\n";
@@ -23,22 +24,61 @@ int main() {
         std::cout << "7. Load data\n";
         std::cout << "8. Exit\n";
         std::cout << "Choice: ";
+
+        int choice;
         std::cin >> choice;
 
-        if (choice == 1) controller.sampleAllOnce();
-        else if (choice == 2) {
-            std::string n;
-            std::cout << "Sensor name: ";
-            std::cin >> n;
-            controller.showStatsFor(n);
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(10'000, '\n');
+            std::cout << "Invalid input.\n";
+            continue;
         }
-        else if (choice == 3) controller.saveToFile("data.csv");
-        else if (choice == 4) controller.configureThreshold();
-        else if (choice == 5) controller.showAlerts();
-        else if (choice == 6) controller.saveToFile("data.csv");
-        else if (choice == 7) controller.loadFromFile("data.csv");
 
-    } while (choice != 8);
+        if (choice == 8) {
+            std::cout << "Exiting...\n";
+            break;
+        }
+
+        switch (choice) {
+        case 1:
+            controller.sampleAllOnce();
+            break;
+
+        case 2: {
+            std::string name;
+            std::cout << "Enter sensor name (Temperature / Humidity / Pressure): ";
+            std::cin >> name;
+            controller.showStatsFor(name);
+            break;
+        }
+
+        case 3:
+            // Visa alla mätvärden
+            controller.printAllMeasurements();
+            break;
+
+        case 4:
+            controller.configureThreshold();
+            break;
+
+        case 5:
+            controller.showAlerts();
+            break;
+
+        case 6:
+            controller.saveToFile("data.csv");
+            break;
+
+        case 7:
+            controller.loadFromFile("data.csv");
+            break;
+
+        default:
+            std::cout << "Invalid choice.\n";
+            break;
+        }
+    }
 
     return 0;
 }

@@ -131,3 +131,6 @@ void SystemController::saveToFile(const std::string& path) const {
 void SystemController::loadFromFile(const std::string& path) {
     storage_.loadFromFile(path);
 }
+void SystemController::printAllMeasurements() const {
+    storage_.printAll();
+}
